@@ -1,4 +1,4 @@
-GMail Micro Service on Google Cloud Run
+# GMail Micro Service on Google Cloud Run
 
 This is a self-hosted micro-service that allows you to send emails using your own GMail account. It is hosted in your Google Cloud Project and requires almost no configuration. It is perfect for quick prototyping where you need to send out e-mail via a POST request without the hassle of setting up new accounts etc.
 
