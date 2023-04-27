@@ -14,19 +14,20 @@ This setup assumes you don't have a Google Cloud Project or Google App Password 
    2. Login to your Google Cloud Account: `gcloud auth login`
    3. Create a Project Config: `gcloud config configurations create {{ ANY_NAME }}`
    4. Activate the new Project Config: `gcloud config configurations activate {{ ANY_NAME }}`
-   5. Set the Project ID: `gcloud config set project <your-project-id>`
+   5. Set the Account: `gcloud config set account {{ GOOGLE_CLOUD_EMAIL }}}`
+   6. Set the Project ID: `gcloud config set project {{ PROJECT_ID }}`
 
 ### Google App Password
 The service works with Google Gmail so in order to use it you need to get an App Password from Google. You can do that here: https://myaccount.google.com/apppasswords (note that this requires 2FA to be enabled on your account).
 
 1. Select "Other (Custom name)" from the dropdown
-2. Give it a name (e.g. "Micro Service Email")
+2. Give it a name (e.g. "micro-service-email")
 3. Copy the generated password for later
 
 ### Environment Variables
 The service requires the following environment variables to be set:
 - `GMAIL_USER` - Your Gmail address (e.g. `test.user@gmail.com`)
-- `GMAIL_PASSWORD` - The App Password you generated above (e.g. `abc123def456`)
+- `GMAIL_APP_PASSWORD` - The App Password you generated above (e.g. `abc123def456`)
 - `API_KEY` - A random string that will be used to secure the service (e.g. `abc123def456`)
   - You can generate one here for example: https://codepen.io/corenominal/pen/rxOmMJ
 
@@ -42,12 +43,12 @@ There is two options to deploy to cloud run:
   1. Deploy the service to Cloud Run: 
 
 ```bash
-gcloud run deploy micro-service-email
-    --image gcr.io/micro-services-385011/micro-service-email:latest 
-    --platform managed 
-    --region us-central1 
-    --allow-unauthenticated 
-    --set-env-vars GMAIL_USER={{ GMAIL_USER }},GMAIL_PASSWORD={{ GMAIL_PASSWORD }},API_KEY={{ API_KEY }}
+gcloud run deploy micro-service-email \
+    --image gcr.io/micro-services-385011/micro-service-email:latest \
+    --platform managed \
+    --region us-central1 \
+    --allow-unauthenticated \
+    --set-env-vars GMAIL_USER={{ GMAIL_USER }},GMAIL_APP_PASSWORD={{ GMAIL_PASSWORD }},API_KEY={{ API_KEY }}
 ```
 
 ### Deploy from Dockerfile
@@ -79,12 +80,12 @@ curl --location 'http://127.0.0.1:8080/send-email' \
 
 1. Deploy the service to Cloud Run
 ```bash
-gcloud run deploy micro-service-email
-    --image gcr.io/{{ PROJECT_ID }}/micro-service-email 
-    --platform managed 
-    --region us-central1 
-    --allow-unauthenticated 
-    --set-env-vars GMAIL_USER={{ GMAIL_USER }},GMAIL_PASSWORD={{ GMAIL_PASSWORD }},API_KEY={{ API_KEY }}
+gcloud run deploy micro-service-email \
+    --image gcr.io/{{ PROJECT_ID }}/micro-service-email \
+    --platform managed \
+    --region us-central1 \
+    --allow-unauthenticated \
+    --set-env-vars GMAIL_USER={{ GMAIL_USER }},GMAIL_APP_PASSWORD={{ GMAIL_PASSWORD }},API_KEY={{ API_KEY }}
 ```
 
 ## Usage
