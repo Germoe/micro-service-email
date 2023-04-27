@@ -12,8 +12,8 @@ This setup assumes you don't have a Google Cloud Project or Google App Password 
 3. Configure your Google Cloud Project locally:
    1. Install Google Cloud SDK: https://cloud.google.com/sdk/docs/install
    2. Login to your Google Cloud Account: `gcloud auth login`
-   3. Create a Project Config: `gcloud config configurations create micro-service-email`
-   4. Activate the new Project Config: `gcloud config configurations activate micro-service-email`
+   3. Create a Project Config: `gcloud config configurations create {{ ANY_NAME }}`
+   4. Activate the new Project Config: `gcloud config configurations activate {{ ANY_NAME }}`
    5. Set the Project ID: `gcloud config set project <your-project-id>`
 
 ### Google App Password
