@@ -48,7 +48,11 @@ gcloud run deploy micro-service-email \
     --platform managed \
     --region us-central1 \
     --allow-unauthenticated \
+<<<<<<< Updated upstream
     --set-env-vars GMAIL_USER={{ GMAIL_USER }},GMAIL_APP_PASSWORD={{ GMAIL_PASSWORD }},API_KEY={{ API_KEY }}
+=======
+    --set-env-vars GMAIL_USER={{ GMAIL_USER }},GMAIL_PASSWORD={{ GMAIL_PASSWORD }},API_KEY={{ API_KEY }}
+>>>>>>> Stashed changes
 ```
 
 ### Deploy from Dockerfile
